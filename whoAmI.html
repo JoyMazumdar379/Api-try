@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I</title>
+</head>
+<body>
+    <h3 id="user-name"></h3>
+    <script>
+        function doSomething() {
+            // Random user data generate from api server site:https://randomuser.me
+            fetch('https://randomuser.me/api/')
+            .then(response => response.json())
+            .then(data => {
+                const user = data.results[0]; /*results er sob info ante chaile*/
+                const name = user.name; /*name propraty jinis ante chaile*/
+                const userName = `${name.title} ${name.first} ${name.last}`/*ek shate full name anar jonno*/
+                document.getElementById('user-name').innerText = userName;
+            });
+        }
+        doSomething();
+        setInterval(() => {
+            doSomething();
+        }, 1000);
+    </script>
+</body>
+</html>
